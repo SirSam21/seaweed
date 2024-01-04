@@ -1,4 +1,4 @@
-import { useState, useContext } from "react"
+import { useState } from "react"
 import Column from "./Column"
 import Button from "./Button"
 
@@ -29,7 +29,7 @@ export default function Board() {
           {columns.map((column) => {
             return <li key={column.id}
               className="inline-block">
-              <Column id={column.id} onColumnDelete={handleColumnDelete} />
+              <Column id={column.id} onColumnDelete={() => handleColumnDelete(column.id)} />
             </li>
           })}
         </ul>
