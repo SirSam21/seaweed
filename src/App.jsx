@@ -19,7 +19,7 @@ function App() {
   return (
     <>
       <SeaweedRoot>
-      <BrowserRouter>
+      <BrowserRouter basename="/seaweed">
         <NavBar pageMenu={pageMenu} />
         <Routes>
           <Route path="/" element={<Home setPageMenu={setPageMenu} />}>
