@@ -1,9 +1,10 @@
 import Board from "./components/Board"
 
-export default function Boards() {
+export default function Boards(props) {
+  const { setPageMenu } = props
   return (<>
-    <div>
-      <Board></Board>
+    <div className="overflow-hidden">
+      <Board setPageMenu={setPageMenu}></Board>
     </div>
   </>)
 }

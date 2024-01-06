@@ -1,17 +1,25 @@
 import { useState } from "react"
 import Button from "./Button.jsx"
+import { Link } from "react-router-dom"
 
 export default function Card(props) {
   const [cardText, setCardText] = useState("");
-  const { onCardDelete } = props
+  const { cardId } = props
 
   return (<>
-    <div href="#" className="block max-w-sm p-6 bg-white border border-emerald-400 rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
-      <div className="text-gray-300">
-        <h1 className="text-lg">Card Title</h1>
-        <p>insane card insides</p>
-        <Button onClick={onCardDelete}>X</ Button>
+    <div href="#" className="h-11 px-4 py-2.5 my-0.5 bg-white rounded shadow flex-col justify-start items-start gap-2.5 inline-flex">
+      <div className="flex flex-row">
+      <input
+      type="text"
+      className="w-[216px] text-stone-900 text-base font-normal font-['Roboto'] leading-normal"
+      onChange={(e) => setCardText(e.target.value)}
+      value={cardText}
+      placeholder={cardId}
+      />
+      <Link to={`/boards/card/${cardId}`}>info</Link>
       </div>
     </div>
   </>)
 }
+
+
