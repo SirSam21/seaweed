@@ -11,18 +11,3 @@ export default function CardInfo() {
         </div>
     </>)
 }
-/*
-.window-overlay {
-    align-items: flex-start;
-    background-color: #000000a3;
-    display: none;
-    height: 100%;
-    justify-content: center;
-    left: 0;
-    overflow-y: auto;
-    position: fixed;
-    top: 0;
-    width: 100%;
-    z-index: 20;
-}
-*/
