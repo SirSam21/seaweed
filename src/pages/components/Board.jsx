@@ -37,6 +37,7 @@ export default function Board(props) {
         <div className="flex flex-c justify-items-start gap-10 px-10 w-full bg-gray-300">
             <h1>Innards of a Board</h1>
             <Button onClick={handleAddColumn}>+ Column</Button>
+            <Button onClick={props.resetData}>Reset Data</Button>
         </div>
         <div className="overflow-y-hidden">
             <div className="columns-3 flex bg-zinc-800 p-1.5">

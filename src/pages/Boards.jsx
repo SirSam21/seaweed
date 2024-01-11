@@ -9,7 +9,6 @@ export default function Boards() {
     useEffect(() => {
         const localBoards = JSON.parse(localStorage.getItem("seaweedBoards"))
 
-        console.log("localBoards: ", localBoards)
         if (localBoards) {
             setBoards(localBoards)
         } else {
@@ -20,7 +19,6 @@ export default function Boards() {
 
     useEffect(() => {
         if (loaded) {
-            console.log("boards: ", boards)
             localStorage.setItem("seaweedBoards", JSON.stringify(boards))
         }
     }, [boards, loaded])
@@ -56,7 +54,8 @@ export default function Boards() {
         if (!updated) {
             const newBoard = {
                 ...board,
-                columns: [...newColumns, column]
+                columns: [...newColumns, column],
+                nextId: column.id + 1
             }
             saveBoard(newBoard)
         } else {
@@ -83,7 +82,8 @@ export default function Boards() {
         if (!updated) {
             const newColumn = {
                 ...column,
-                cards: [...newCards, card]
+                cards: [...newCards, card],
+                nextId: card.id + 1
             }
             saveColumn(newColumn)
         } else {
@@ -93,6 +93,10 @@ export default function Boards() {
             }
             saveColumn(newColumn)
         }
+    }
+
+    function resetData() {
+        setBoards([testData])
     }
 
     // item can be a column or a card
@@ -118,6 +122,7 @@ export default function Boards() {
                 saveBoard={saveBoard}
                 saveColumn={saveColumn}
                 saveCard={saveCard}
+                resetData={resetData}
             />
         </div>
     </>)
