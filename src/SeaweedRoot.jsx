@@ -1,8 +1,10 @@
+import { AppProvider } from "./AppContext"
+import App from "./App"
 
-export default function SeaweedRoot(props) {
+export default function SeaweedRoot() {
     return (<>
-        <div className="overflow-hidden">
-            {props.children}
-        </div>
+        <AppProvider>
+            <App />
+        </ AppProvider>
     </>)
 }

@@ -1,25 +1,43 @@
-import { useState } from "react"
-import Button from "./Button.jsx"
-import { Link } from "react-router-dom"
+import { useEffect, useState } from "react"
 
 export default function Card(props) {
-  const [cardText, setCardText] = useState("");
-  const { cardId } = props
+    const [tempText, setTempText] = useState(props.card.text)
+    const [committedText, setCommittedText] = useState(props.card.text)
 
-  return (<>
-    <div href="#" className="h-11 px-4 py-2.5 my-0.5 bg-white rounded shadow flex-col justify-start items-start gap-2.5 inline-flex">
-      <div className="flex flex-row">
-      <input
-      type="text"
-      className="w-[216px] text-stone-900 text-base font-normal font-['Roboto'] leading-normal"
-      onChange={(e) => setCardText(e.target.value)}
-      value={cardText}
-      placeholder={cardId}
-      />
-      <Link to={`/boards/card/${cardId}`}>info</Link>
-      </div>
-    </div>
-  </>)
+    useEffect(() => {
+        const newCard = {
+            ...props.card,
+            text: tempText
+        }
+        props.saveCard(newCard)
+    }, [committedText])
+
+    function handleTextUpdate() {
+        setCommittedText(tempText)
+    }
+
+    function handleTextChange(e) {
+        if (e.key === "Escape") {
+            setTempText(committedText)
+        } else {
+            setTempText(e.target.value)
+        }
+    }
+
+    return (<>
+        <div href="#" className="h-11 px-4 py-2.5 my-0.5 bg-white rounded shadow flex-col justify-start items-start gap-2.5 inline-flex">
+            <div className="flex flex-row">
+                <textarea
+                    className="w-full text-stone-900 text-base font-normal font-['Roboto'] leading-normal"
+                    onChange={handleTextChange}
+                    value={tempText}
+                    placeholder={"Type here bruh"}
+                    onBlur={handleTextUpdate}
+                />
+                {/* <Link to={`/boards/card/${cardId}`}>info</Link> */}
+            </div>
+        </div>
+    </>)
 }
 
 
