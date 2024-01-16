@@ -39,22 +39,20 @@ export default function Board(props) {
             <Button onClick={handleAddColumn}>+ Column</Button>
             <Button onClick={props.resetData}>Reset Data</Button>
         </div>
-        <div className="overflow-y-hidden">
-            <div className="columns-3 flex bg-zinc-800 p-1.5">
-                <ul className="whitespace-nowrap">
-                    {columns.map(column => {
-                        return <li key={column.id} className="inline-block">
-                            <Column
-                                column={column}
-                                onColumnDelete={() => handleColumnDelete(column)}
-                                boardId={props.board.id}
-                                saveColumn={props.saveColumn}
-                                saveCard={props.saveCard}
-                            />
-                        </li>
-                    })}
-                </ul>
-            </div>
+        <div className="overflow-y-hidden columns-3 flex p-1.5">
+            <ul className="whitespace-nowrap">
+                {columns.map(column => {
+                    return <li key={column.id} className="inline-block">
+                        <Column
+                            column={column}
+                            onColumnDelete={() => handleColumnDelete(column)}
+                            boardId={props.board.id}
+                            saveColumn={props.saveColumn}
+                            saveCard={props.saveCard}
+                        />
+                    </li>
+                })}
+            </ul>
             <Outlet />
         </div>
     </>)

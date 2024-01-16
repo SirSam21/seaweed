@@ -1,10 +1,7 @@
-import { AppProvider } from "./AppContext"
-import App from "./App"
+import App from "./App.jsx"
 
 export default function SeaweedRoot() {
     return (<>
-        <AppProvider>
             <App />
-        </ AppProvider>
     </>)
 }

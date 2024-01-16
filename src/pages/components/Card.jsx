@@ -17,26 +17,26 @@ export default function Card(props) {
     }
 
     function handleTextChange(e) {
-        if (e.key === "Escape") {
-            setTempText(committedText)
-        } else {
-            setTempText(e.target.value)
-        }
+        setTempText(e.target.value)
     }
 
-    return (<>
-        <div href="#" className="h-11 px-4 py-2.5 my-0.5 bg-white rounded shadow flex-col justify-start items-start gap-2.5 inline-flex">
-            <div className="flex flex-row">
-                <textarea
-                    className="w-full text-stone-900 text-base font-normal font-['Roboto'] leading-normal"
-                    onChange={handleTextChange}
-                    value={tempText}
-                    placeholder={"Type here bruh"}
-                    onBlur={handleTextUpdate}
-                />
-                {/* <Link to={`/boards/card/${cardId}`}>info</Link> */}
-            </div>
-        </div>
+    function handleTextReset(e) {
+        if (e.key === "Escape") {
+            setTempText(committedText)
+            e.blur()
+        } 
+    }
+
+    return (<> {/* h-11 px-4 py-2.5 my-0.5 bg-white rounded shadow flex-col justify-start items-start gap-2.5 inline-flex */}
+        <textarea
+            className="w-full text-stone-900 font-normal font-['Roboto'] px-4 py-2.5 my-1 rounded"
+            onChange={handleTextChange}
+            value={tempText}
+            placeholder={"Type here bruh"}
+            onBlur={handleTextUpdate}
+            onKeyUp={handleTextReset}
+        />
+        {/* <Link to={`/boards/card/${cardId}`}>info</Link> */}
     </>)
 }
 

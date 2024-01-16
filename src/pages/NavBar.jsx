@@ -1,21 +1,32 @@
 import { NavLink } from "react-router-dom"
 
-export default function NavBar(props) {
-    const { pageMenu } = props
+export default function NavBar() {
 
     return (<>
-        <nav className="bg-black text-emerald-500 border-blue-500">
-            <div className="max-w-screen-l">
-                <div className="flex flex-col">
-                    <ul className="flex justify-between px-10">
-                        <li><NavLink to="/">Home</NavLink></li>
-                        <li><NavLink to="/boards">Boards</NavLink></li>
-                        <li><NavLink to="/about">About</NavLink></li>
-                        <li><NavLink to="/donate">Donate</NavLink></li>
-                    </ul>
-                    {pageMenu || <></>}
-                </div>
+        <nav className="side-bar">
+            <div className="nav-link">
+                <NavLink to="/">
+                    Home
+                </NavLink>
+            </div>
+            <div className="nav-link">
+                <NavLink to="/boards">
+                    Boards
+                </NavLink>
+            </div>
+            <div className="nav-link">
+                <NavLink to="/about">
+                    About
+                </NavLink>
+            </div>
+            <div className="nav-link">
+                <NavLink to="/donate">
+                    Donate
+                </NavLink>
             </div>
         </nav>
     </>)
 }
+
+// <div className="nav-link" class="w-[1920px] h-[49px] bg-sky-700"></div>
+// <div className="nav-link" class="w-[41px] h-[41px] bg-blue-500 rounded"></div>
