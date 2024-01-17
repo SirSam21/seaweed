@@ -24,7 +24,7 @@ function App() {
     return (
         <>
             <div className="overflow-hidden h-screen bg-zinc-800">
-                <BrowserRouter basename="/seaweed">
+                <BrowserRouter>
                     <NavBar pageMenu={pageMenu} />
                     <Routes>
                         <Route path="/" element={<Home setPageMenu={setPageMenu} />}>
