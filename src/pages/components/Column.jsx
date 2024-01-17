@@ -43,9 +43,8 @@ export default function Column(props) {
 
     // maybe split column and column contents? style vs content?
     return (<>
-        <div className="w-[284px] max-h-[600px] overflow-y-auto px-1.5 mx-1.5 bg-zinc-200 rounded-[5px] flex-col justify-start items-center gap-2.5 inline-flex">
+        <div>
             <textarea 
-                className="text-slate-600 font-bold font-['Roboto']"
                 placeholder={"Title Here Bruh"}
                 onChange={handleTitleChange}
                 value={tempText}

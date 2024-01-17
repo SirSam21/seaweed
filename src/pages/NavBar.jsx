@@ -1,4 +1,6 @@
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { NavLink } from "react-router-dom"
+import { faHandHoldingDollar, faHome, faTableColumns, faUser } from "@fortawesome/free-solid-svg-icons"
 
 export default function NavBar() {
 
@@ -6,22 +8,22 @@ export default function NavBar() {
         <nav className="side-bar">
             <div className="nav-link">
                 <NavLink to="/">
-                    Home
+                    <FontAwesomeIcon className="icon" icon={faHome} size="2x" />
                 </NavLink>
             </div>
             <div className="nav-link">
                 <NavLink to="/boards">
-                    Boards
+                    <FontAwesomeIcon className="icon" icon={faTableColumns} size="2x" />
                 </NavLink>
             </div>
             <div className="nav-link">
                 <NavLink to="/about">
-                    About
+                    <FontAwesomeIcon className="icon" icon={faUser} size="2x" />
                 </NavLink>
             </div>
             <div className="nav-link">
                 <NavLink to="/donate">
-                    Donate
+                    <FontAwesomeIcon className="icon" icon={faHandHoldingDollar} size="2x" />
                 </NavLink>
             </div>
         </nav>

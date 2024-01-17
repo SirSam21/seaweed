@@ -116,7 +116,7 @@ export default function Boards() {
     // need some kinda board id thing here if we are gonna have
     // multiple boards
     return (<>
-        <div className="overflow-hidden">
+        <div className="board-container">
             <Board
                 board={boards[0]}
                 saveBoard={saveBoard}

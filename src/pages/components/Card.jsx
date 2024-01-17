@@ -29,7 +29,6 @@ export default function Card(props) {
 
     return (<> {/* h-11 px-4 py-2.5 my-0.5 bg-white rounded shadow flex-col justify-start items-start gap-2.5 inline-flex */}
         <textarea
-            className="w-full text-stone-900 font-normal font-['Roboto'] px-4 py-2.5 my-1 rounded"
             onChange={handleTextChange}
             value={tempText}
             placeholder={"Type here bruh"}

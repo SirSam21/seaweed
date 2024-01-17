@@ -1,13 +1,25 @@
 .side-bar {
     background-color: #363636;
-    color: #10B981;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    align-items: center;
+    padding-top: 10px;
+    gap: 15px;
 
     position: fixed;
     top: 0px;
     bottom: 0px;
-    width: 75px;
+    width: 55px;
 }
 
+.side-bar .nav-link {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.side-bar .nav-link .icon {
+    color: #10B981;
+}

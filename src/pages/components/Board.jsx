@@ -34,15 +34,15 @@ export default function Board(props) {
 
     return (<>
         {/* <BoardSettings></BoardSettings> */}
-        <div className="flex flex-c justify-items-start gap-10 px-10 w-full bg-gray-300">
+        <div>
             <h1>Innards of a Board</h1>
             <Button onClick={handleAddColumn}>+ Column</Button>
             <Button onClick={props.resetData}>Reset Data</Button>
         </div>
-        <div className="overflow-y-hidden columns-3 flex p-1.5">
-            <ul className="whitespace-nowrap">
+        <div>
+            <ul>
                 {columns.map(column => {
-                    return <li key={column.id} className="inline-block">
+                        return <li key={column.id}>
                         <Column
                             column={column}
                             onColumnDelete={() => handleColumnDelete(column)}
