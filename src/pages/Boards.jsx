@@ -23,6 +23,7 @@ export default function Boards() {
         }
     }, [boards, loaded])
 
+
     function saveBoard(board) {
         let updated = false
         const newBoards = boards.map(b => {

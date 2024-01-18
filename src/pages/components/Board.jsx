@@ -1,11 +1,22 @@
-import { useEffect, useState } from "react"
+import { useContext, useEffect, useState } from "react"
 import Column from "./Column"
-import Button from "./Button"
 import { Outlet } from "react-router-dom"
+import { AppContext } from "../../AppContext"
+import BoardsMenuItems from "./BoardsMenuItems"
 
 export default function Board(props) {
     const [columns, setColumns] = useState(props.board.columns)
     const [nextId, setNextId] = useState(props.board.nextId)
+
+    const ctx = useContext(AppContext)
+
+
+    const pageNavMenu = <BoardsMenuItems
+                            onColumnAdd={handleAddColumn}
+                            onResetClick={props.resetData}
+                        />
+
+    ctx.setPageNavItems(pageNavMenu)
 
     useEffect(() => {
         const newBoard = {
@@ -34,11 +45,13 @@ export default function Board(props) {
 
     return (<>
         {/* <BoardSettings></BoardSettings> */}
+        {/*
         <div>
             <h1>Innards of a Board</h1>
             <Button onClick={handleAddColumn}>+ Column</Button>
             <Button onClick={props.resetData}>Reset Data</Button>
         </div>
+        */}
         <div>
             <ul>
                 {columns.map(column => {

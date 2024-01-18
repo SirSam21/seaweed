@@ -2,10 +2,12 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Home from "./pages/Home.jsx";
 import Boards from "./pages/Boards.jsx";
 import NavBar from "./pages/NavBar.jsx";
-import { useEffect } from "react";
-import Donate from "./pages/Donate.jsx";
+import Menu from "./pages/components/Menu"
+import { useContext, useEffect } from "react";
 import About from "./pages/About.jsx";
 import CardInfo from "./pages/components/CardInfo.jsx"
+import { AppContext } from "./AppContext.jsx";
+import DefaultNavItems from "./pages/DefaultNavItems.jsx";
 
 function App() {
 
@@ -13,10 +15,18 @@ function App() {
         document.title = "Seaweed Boards! :D"
     }, [])
 
+    const ctx = useContext(AppContext)
+
     return (
         <>
             <BrowserRouter basename="/seaweed">
-                <NavBar />
+                <NavBar>
+                    <Menu>
+                        {ctx.pageNavItems}
+                    </Menu>
+                    <div className="divider" />
+                    <DefaultNavItems />
+                </NavBar>
                 <div className="page-container">
                     <Routes>
                         <Route path="/" element={<Home />}>
@@ -26,8 +36,6 @@ function App() {
                             </Route>
                         </Route>
                         <Route path="/about" element={<About />}>
-                        </Route>
-                        <Route path="/donate" element={<Donate />}>
                         </Route>
                     </Routes>
                 </ div>
