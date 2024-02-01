@@ -3,70 +3,41 @@ import Column from "./Column"
 import { Outlet } from "react-router-dom"
 import { AppContext } from "../../AppContext"
 import BoardsMenuItems from "./BoardsMenuItems"
+import { ReducerContext } from "../../ReducerContext"
 
 export default function Board(props) {
-    const [columns, setColumns] = useState(props.board.columns)
-    const [nextId, setNextId] = useState(props.board.nextId)
-
     const ctx = useContext(AppContext)
+    const reducer = useContext(ReducerContext)
 
+    const nextColId = reducer.state.boards[props.id].nextId
+    const [nextId, setNextId] = useState(nextColId)
 
-    const pageNavMenu = <BoardsMenuItems
-                            onColumnAdd={handleAddColumn}
-                            onResetClick={props.resetData}
-                        />
-
-    ctx.setPageNavItems(pageNavMenu)
-
-    useEffect(() => {
-        const newBoard = {
-            ...props.board,
-            columns: columns,
-            nextId: nextId
+    function onColumnAdd() {
+        const action = {
+            type: "addColumn",
+            boardId: props.id,
+            id: nextId
         }
-        props.saveBoard(newBoard)
-    }, [columns, nextId])
-
-    function handleAddColumn() {
-        const column = {
-            title: "",
-            cards: [],
-            id: nextId,
-            nextId: 0,
-            boardId: props.board.id
-        }
-        setColumns([...columns, column])
+        reducer.dispatch(action)
         setNextId(prev => prev + 1)
     }
-    
-    function handleColumnDelete(column) {
-        setColumns(columns.filter(c => c.id !== column.id))
-    }
+
+    const pageNavMenu = <BoardsMenuItems
+        boardId={props.id}
+        onColumnAdd={onColumnAdd}
+    />
+
+    useEffect(() => ctx.setPageNavItems(pageNavMenu), [nextId])
 
     return (<>
-        {/* <BoardSettings></BoardSettings> */}
-        {/*
-        <div>
-            <h1>Innards of a Board</h1>
-            <Button onClick={handleAddColumn}>+ Column</Button>
-            <Button onClick={props.resetData}>Reset Data</Button>
-        </div>
-        */}
-        <div>
-            <ul>
-                {columns.map(column => {
-                        return <li key={column.id}>
-                        <Column
-                            column={column}
-                            onColumnDelete={() => handleColumnDelete(column)}
-                            boardId={props.board.id}
-                            saveColumn={props.saveColumn}
-                            saveCard={props.saveCard}
-                        />
-                    </li>
-                })}
-            </ul>
-            <Outlet />
-        </div>
+        {reducer.state.boards[props.id].columns.map(column => {
+            return <Column
+                key={column.id}
+                boardId={props.id}
+                className="column"
+                id={column.id}
+            />
+        })}
+        <Outlet />
     </>)
 }

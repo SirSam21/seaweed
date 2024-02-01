@@ -1,23 +1,21 @@
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { NavLink } from "react-router-dom"
-import { faHome, faTableColumns, faUser } from "@fortawesome/free-solid-svg-icons"
 
 export default function DefaultNavItems() {
 
     return (<>
         <div className="nav-link">
-            <NavLink to="/">
-                <FontAwesomeIcon className="icon" icon={faHome} size="2x" />
+            <NavLink to="/" className="menu-btn">
+                <img src="home.svg" alt="home" />
             </NavLink>
         </div>
         <div className="nav-link">
-            <NavLink to="/boards">
-                <FontAwesomeIcon className="icon" icon={faTableColumns} size="2x" />
+            <NavLink to="/boards" className="menu-btn" >
+                <img src="boards.svg" alt="boards" />
             </NavLink>
         </div>
         <div className="nav-link">
-            <NavLink to="/about">
-                <FontAwesomeIcon className="icon" icon={faUser} size="2x" />
+            <NavLink to="/about" className="menu-btn" >
+                <img src="info.svg" alt="info" />
             </NavLink>
         </div>
     </>)

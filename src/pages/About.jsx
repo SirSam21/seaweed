@@ -1,5 +1,13 @@
+import { useContext, useEffect } from "react"
+import { AppContext } from "../AppContext"
 
 export default function About() {
+    const ctx = useContext(AppContext)
+
+    useEffect(() => {
+        ctx.setPageNavItems()
+    }, [])
+
     return (<>
         <div>
             Hi, I&apos;m Sam. This is my kanban website.

@@ -23,8 +23,8 @@
 }
 
 .side-bar .nav-link {
-    width: 40px;
-    height: 40px;
+    width: 42px;
+    height: 42px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -41,10 +41,6 @@
     align-items: center;
 }
 
-.menu-closed {
-    display: none;
-}
-
 .menu-open {
     background-color: blue;
     width: 50px;
@@ -54,5 +50,15 @@
     display: grid;
     top: -2px;
     left: 40px;
+    z-index: 10;
 }
 
+.overlay {
+    height: 100vh;
+    width: 100vw;
+    position: fixed;
+    top: 0;
+    left: 0;
+    display: block;
+    z-index: 5;
+}

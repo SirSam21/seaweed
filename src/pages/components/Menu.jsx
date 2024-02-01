@@ -1,4 +1,5 @@
 import { useState } from "react"
+import { createPortal } from "react-dom"
 import Button from "./Button"
 
 export default function Menu(props) {
@@ -7,9 +8,14 @@ export default function Menu(props) {
     return (<>
         <Button className="menu-btn" onClick={() => setMenuOpen(true)}>
             <img src="menu_arrow.svg" alt="Menu" />
-            <div className={ menuOpen ? "menu-open" : "menu-closed"}>
+        </Button>
+        {menuOpen && createPortal(
+            <>
+            <div className="overlay" onClick={() => setMenuOpen(false)} />
+            <div className="menu-open">
                 {props.children}
             </div>
-        </Button>
+            </>,
+            document.body)}
     </>)
 }

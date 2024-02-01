@@ -1,15 +1,24 @@
-import { useEffect, useState } from "react"
+import { useEffect, useState, useContext } from "react"
+import { ReducerContext } from "../../ReducerContext"
 
 export default function Card(props) {
-    const [tempText, setTempText] = useState(props.card.text)
-    const [committedText, setCommittedText] = useState(props.card.text)
+
+    const reducer = useContext(ReducerContext)
+    const card = reducer.state.boards[props.boardId].columns[props.columnId].cards[props.id]
+    console.log(reducer.state.boards[props.boardId])
+    const [tempText, setTempText] = useState(card.text)
+    const [committedText, setCommittedText] = useState(card.text)
+
 
     useEffect(() => {
-        const newCard = {
-            ...props.card,
-            text: tempText
+        const action = {
+            type: "saveCard",
+            card: {
+                ...card,
+                text: committedText
+            }
         }
-        props.saveCard(newCard)
+        reducer.dispatch(action)
     }, [committedText])
 
     function handleTextUpdate() {
@@ -24,7 +33,7 @@ export default function Card(props) {
         if (e.key === "Escape") {
             setTempText(committedText)
             e.blur()
-        } 
+        }
     }
 
     return (<> {/* h-11 px-4 py-2.5 my-0.5 bg-white rounded shadow flex-col justify-start items-start gap-2.5 inline-flex */}
