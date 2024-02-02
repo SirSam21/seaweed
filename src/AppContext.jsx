@@ -1,38 +1,21 @@
-import { createContext, useState } from "react";
+import { useState } from "react";
+import { createContext } from "react";
 
-export const AppContext = createContext()
+const AppContext = createContext()
 
-export function AppProvider(props) {
-    const [boards, setBoards] = useState([])
-    const [nextBoardId, setNextBoardId] = useState(0)
-    const [loaded, setLoaded] = useState(true)
-
-
-    // useEffect(() => {
-    //     console.log("board: ", boards[0])
-    //     console.log("columns: ", columns)
-    //     console.log("cards: ", cards)
-    // }, [boards, columns, cards])
-
-    function DeleteBoard(board) {
-        setBoards(boards.filter(b => b !== board))
-    }
-
-    function getBoard(boardId) {
-        return boards.find((b) => b.boardId === boardId)
-    }
+function AppProvider(props) {
+    const [pageNavItems, setPageNavItems] = useState()
 
     const value = {
-    //     boards,
-    //     AddBoard,
-    //     DeleteBoard,
-    //     getBoard,
-    //     loaded
+        pageNavItems,
+        setPageNavItems
     }
 
-    return (
+    return (<>
         <AppContext.Provider value={value}>
             {props.children}
         </AppContext.Provider>
-    )
+    </>)
 }
+
+export { AppContext, AppProvider }

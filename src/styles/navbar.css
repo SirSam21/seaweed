@@ -1,0 +1,64 @@
+.side-bar {
+    background-color: #C3C3C3;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 3px;
+    padding-left: 4px;
+    padding-right: 4px;
+    gap: 15px;
+
+    position: fixed;
+    top: 0px;
+    bottom: 0px;
+    left: 0px;
+    width: 42px;
+}
+
+.side-bar .divider {
+    height: 5px;
+    width: 100%;
+    background: #D9D9D9;
+    box-shadow: -2px -2px 0px 0px rgba(0, 0, 0, 0.50) inset, 2px 2px 0px 0px rgba(255, 255, 255, 0.50) inset;
+}
+
+.side-bar .nav-link {
+    width: 42px;
+    height: 42px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.side-bar .menu-btn {
+    position: relative;
+    background: #C3C3C3;
+    box-shadow: -2px -2px 0px 0px rgba(0, 0, 0, 0.50) inset, 2px 2px 0px 0px rgba(255, 255, 255, 0.50) inset;
+    width: 42px;
+    height: 42px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.menu-open {
+    background-color: blue;
+    width: 50px;
+    height: 50px;
+
+    position: absolute;
+    display: grid;
+    top: -2px;
+    left: 40px;
+    z-index: 10;
+}
+
+.overlay {
+    height: 100vh;
+    width: 100vw;
+    position: fixed;
+    top: 0;
+    left: 0;
+    display: block;
+    z-index: 5;
+}

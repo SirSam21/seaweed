@@ -1,13 +1,14 @@
-import { useEffect } from "react"
+import { useContext, useEffect } from "react"
+import { AppContext } from "../AppContext"
 
-export default function Home(props) {
-    const { setPageMenu } = props
+export default function Home() {
+    const ctx = useContext(AppContext)
 
     useEffect(() => {
-        setPageMenu()
-    })
+        ctx.setPageNavItems()
+    }, [])
 
     return (<>
-        <h1 className="bg-emerald-400">Welcome to Seaweed!</h1>
+        <h1>Welcome to Seaweed!</h1>
     </>)
 }

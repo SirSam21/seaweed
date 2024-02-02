@@ -1,61 +1,51 @@
-import { useEffect, useState } from "react"
+import { useContext, useEffect, useState } from "react"
 import Column from "./Column"
-import Button from "./Button"
 import { Outlet } from "react-router-dom"
+import { AppContext } from "../../AppContext"
+import BoardsMenuItems from "./BoardsMenuItems"
+import { ReducerContext } from "../../ReducerContext"
 
 export default function Board(props) {
-    const [columns, setColumns] = useState(props.board.columns)
-    const [nextId, setNextId] = useState(props.board.nextId)
+    const ctx = useContext(AppContext)
+    const reducer = useContext(ReducerContext)
 
-    useEffect(() => {
-        const newBoard = {
-            ...props.board,
-            columns: columns,
-            nextId: nextId
-        }
-        props.saveBoard(newBoard)
-    }, [columns, nextId])
+    function getThisBoard() {
+        return reducer.state.boards.find(b => b.id === props.id)
+    }
 
-    function handleAddColumn() {
-        const column = {
-            title: "",
-            cards: [],
-            id: nextId,
-            nextId: 0,
-            boardId: props.board.id
+    const board = getThisBoard()
+
+    useEffect(() => console.log(board.nextId),[board.nextId])
+
+    const [nextId, setNextId] = useState(board.nextId)
+
+    function onColumnAdd() {
+        const action = {
+            type: "addColumn",
+            boardId: props.id,
+            id: nextId
         }
-        setColumns([...columns, column])
+        reducer.dispatch(action)
         setNextId(prev => prev + 1)
     }
-    
-    function handleColumnDelete(column) {
-        setColumns(columns.filter(c => c.id !== column.id))
-    }
+
+    useEffect(() => {
+        ctx.setPageNavItems(
+            <BoardsMenuItems
+                boardId={props.id}
+                onColumnAdd={onColumnAdd}
+            />
+        )
+    }, [nextId])
 
     return (<>
-        {/* <BoardSettings></BoardSettings> */}
-        <div className="flex flex-c justify-items-start gap-10 px-10 w-full bg-gray-300">
-            <h1>Innards of a Board</h1>
-            <Button onClick={handleAddColumn}>+ Column</Button>
-            <Button onClick={props.resetData}>Reset Data</Button>
-        </div>
-        <div className="overflow-y-hidden">
-            <div className="columns-3 flex bg-zinc-800 p-1.5">
-                <ul className="whitespace-nowrap">
-                    {columns.map(column => {
-                        return <li key={column.id} className="inline-block">
-                            <Column
-                                column={column}
-                                onColumnDelete={() => handleColumnDelete(column)}
-                                boardId={props.board.id}
-                                saveColumn={props.saveColumn}
-                                saveCard={props.saveCard}
-                            />
-                        </li>
-                    })}
-                </ul>
-            </div>
-            <Outlet />
-        </div>
+        {board.columns.map(column => {
+            return <Column
+                key={column.id}
+                boardId={props.id}
+                id={column.id}
+            />
+        })}
+        <Outlet />
     </>)
 }

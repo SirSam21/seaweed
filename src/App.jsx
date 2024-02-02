@@ -2,46 +2,46 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Home from "./pages/Home.jsx";
 import Boards from "./pages/Boards.jsx";
 import NavBar from "./pages/NavBar.jsx";
-import { useContext, useEffect, useState } from "react";
-import Donate from "./pages/Donate.jsx";
+import Menu from "./pages/components/Menu"
+import { useContext, useEffect } from "react";
 import About from "./pages/About.jsx";
 import CardInfo from "./pages/components/CardInfo.jsx"
 import { AppContext } from "./AppContext.jsx";
+import DefaultNavItems from "./pages/DefaultNavItems.jsx";
 
-function App() {
-
-    const [pageMenu, setPageMenu] = useState()
-    const ctx = useContext(AppContext)
+export default function App() {
 
     useEffect(() => {
         document.title = "Seaweed Boards! :D"
     }, [])
 
-    if (!ctx) {
-        return <p>Loading...</p>
-    }
+    const ctx = useContext(AppContext)
 
     return (
         <>
-            <div className="overflow-hidden h-screen bg-zinc-800">
-                <BrowserRouter>
-                    <NavBar pageMenu={pageMenu} />
+            <BrowserRouter basename="/seaweed">
+                <NavBar>
+                    <Menu>
+                        {ctx.pageNavItems}
+                    </Menu>
+                    <div className="divider" />
+                    <DefaultNavItems />
+                </NavBar>
+                <div className="page-container">
                     <Routes>
-                        <Route path="/" element={<Home setPageMenu={setPageMenu} />}>
+                        <Route path="/" element={<Home />}>
                         </Route>
-                        <Route path="/boards" element={<Boards setPageMenu={setPageMenu} />}>
+                        <Route path="/boards" element={<Boards />}>
                             <Route path="card/:cardId" element={<CardInfo />}>
                             </Route>
                         </Route>
-                        <Route path="/about" element={<About setPageMenu={setPageMenu} />}>
-                        </Route>
-                        <Route path="/donate" element={<Donate setPageMenu={setPageMenu} />}>
+                        <Route path="/about" element={<About />}>
                         </Route>
                     </Routes>
-                </BrowserRouter>
-            </div>
+                </ div>
+            </BrowserRouter>
         </>
     )
 }
 
-export default App
+

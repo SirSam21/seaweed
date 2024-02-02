@@ -1,0 +1,53 @@
+
+.cards-container {
+    display: flex;
+    flex-direction: column;
+    padding-left: 7px;
+    padding-right: 7px;
+    padding-top: 12px;
+    padding-bottom: 10px;
+    gap: 15px;
+    overflow-y: auto;
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+}
+
+/* Hide scrollbar for Chrome, Safari and Opera */
+.cards-container::-webkit-scrollbar {
+  display: none;
+}
+
+.card {
+    background: none;
+    min-height: 57px;
+    postion: relative;
+    box-shadow: inset 3px 3px 0px rgba(255, 255, 255, 0.5), inset -3px -3px 0px rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-left: 11px;
+    padding-right: 11px;
+}
+
+.card .text {
+    background: none; 
+    border: none;
+    font-family: Arial;
+    font-size: 16px;
+}
+
+.card-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 28px;
+    min-width: 28px;
+    background: #C3C3C3;
+    box-shadow: inset 2px 2px 0px rgba(255, 255, 255, 0.5), inset -2px -2px 0px rgba(0, 0, 0, 0.5);
+}
+
+.black-rectangle {
+    background: #000000;
+    min-height: 3px;
+    min-width: 18px;
+}

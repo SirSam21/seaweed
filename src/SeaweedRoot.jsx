@@ -1,10 +1,18 @@
+import { useEffect, useReducer } from "react"
+import App from "./App.jsx"
 import { AppProvider } from "./AppContext"
-import App from "./App"
+import { initialState, ReducerContext, Reducer as reducer } from "./ReducerContext.jsx"
 
 export default function SeaweedRoot() {
+    const [state, dispatch] = useReducer(reducer, initialState)
+
+    useEffect(() => console.log(state), [state])
+
     return (<>
-        <AppProvider>
-            <App />
-        </ AppProvider>
+        <ReducerContext.Provider value={{ state, dispatch }}>
+            <AppProvider>
+                <App />
+            </AppProvider>
+        </ReducerContext.Provider>
     </>)
 }
