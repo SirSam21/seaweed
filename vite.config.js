@@ -5,7 +5,6 @@ import tailwindcss from 'tailwindcss'
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [react()],
-  base: '/seaweed/',
   build: {
       outDir: './build',
       emptyOutDir: true
