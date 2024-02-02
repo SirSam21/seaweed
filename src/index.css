@@ -1,4 +1,6 @@
 @import "./styles/reset.css";
+@import "./styles/card.css";
+@import "./styles/column.css";
 @import "./styles/navbar.css";
 @import "./styles/page.css";
 @import "./styles/board.css";

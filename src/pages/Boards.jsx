@@ -7,9 +7,9 @@ export default function Boards() {
 
     const reducer = useContext(ReducerContext)
 
-    useEffect(() => {
-        console.log(reducer.state.boards[0])
-    })
+    // useEffect(() => {
+    //     console.log(reducer.state.boards[0])
+    // }, [reducer.state])
 
     // const nextBoardId = reducer.state.nextId
     // const [nextId, setNextBoardId] = useState(nextBoardId)

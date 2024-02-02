@@ -5,16 +5,19 @@ import { ReducerContext } from "../../ReducerContext.jsx"
 
 export default function Column(props) {
 
-    const reducer = useContext(ReducerContext)
-    const column = reducer.state.boards[props.boardId].columns[props.id]
+    function getThisColumn() {
+        const board = reducer.state.boards.find(b => b.id === props.boardId)
+        const column = board.columns.find(c => c.id === props.id)
+        return column
+    }
 
+    const reducer = useContext(ReducerContext)
+    const column = getThisColumn()
     const [tempText, setTempText] = useState(column.title)
     const [committedText, setCommittedText] = useState(column.title)
     const [nextId, setNextId] = useState(column.nextId)
 
     useEffect(() => {
-        const column = reducer.state.boards[props.boardId].columns[props.id]
-
         if (column === null) {
             return
         }
@@ -30,7 +33,7 @@ export default function Column(props) {
         }
         reducer.dispatch(action)
     }, [committedText, nextId])
-
+    
     function handleTitleChange(e) {
         if (e.key === "Escape") {
             setTempText(committedText)
@@ -66,23 +69,34 @@ export default function Column(props) {
     // maybe split column and column contents? style vs content?
     return (<>
         <div>
-            <textarea
-                placeholder={"Title Here Bruh"}
-                onChange={handleTitleChange}
-                value={tempText}
-                onBlur={handleTitleUpdate}
-            />
-            <Button onClick={handleColumnDelete}>X</ Button>
-            <div className="cards-container">
-                {reducer.state.boards[props.boardId].columns[props.id].cards.map(card => {
-                    return (<Card
-                        key={card.id}
-                        columnId={props.id}
-                        boardId={props.boardId}
-                        id={card.id}
-                    />)
-                })}
-                <Button onClick={handleCardAdd}>Add Card</ Button>
+            <div className="column">
+                <div className="column-header">
+                    <input
+                        placeholder={"Title Here Bruh"}
+                        onChange={handleTitleChange}
+                        value={tempText}
+                        onBlur={handleTitleUpdate}
+                        className="column-title"
+                    />
+                    <div className="button-container">
+                        <Button className="column-button" onClick={handleCardAdd}>
+                            <img src="+.svg" alt="add column" className="add-button" />
+                        </ Button>
+                        <Button className="column-button" onClick={handleColumnDelete}>
+                            <img src="x.svg" alt="add column" className="add-button" />
+                        </ Button>
+                    </div>
+                </div>
+                <div className="cards-container">
+                    {column.cards.map(card => {
+                        return (<Card
+                            key={card.id}
+                            columnId={props.id}
+                            boardId={props.boardId}
+                            id={card.id}
+                        />)
+                    })}
+                </div>
             </div>
         </div>
     </>)

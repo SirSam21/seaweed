@@ -9,7 +9,7 @@ import CardInfo from "./pages/components/CardInfo.jsx"
 import { AppContext } from "./AppContext.jsx";
 import DefaultNavItems from "./pages/DefaultNavItems.jsx";
 
-function App() {
+export default function App() {
 
     useEffect(() => {
         document.title = "Seaweed Boards! :D"
@@ -44,4 +44,4 @@ function App() {
     )
 }
 
-export default App
+

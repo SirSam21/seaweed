@@ -1,11 +1,18 @@
 import { useEffect, useState, useContext } from "react"
 import { ReducerContext } from "../../ReducerContext"
+import Button from "./Button"
 
 export default function Card(props) {
 
+    function getThisCard() {
+        const board = reducer.state.boards.find(b => b.id === props.boardId)
+        const column = board.columns.find(c => c.id === props.columnId)
+        const card = column.cards.find(c => c.id === props.id)
+        return card
+    }
+
     const reducer = useContext(ReducerContext)
-    const card = reducer.state.boards[props.boardId].columns[props.columnId].cards[props.id]
-    console.log(reducer.state.boards[props.boardId])
+    const card = getThisCard()
     const [tempText, setTempText] = useState(card.text)
     const [committedText, setCommittedText] = useState(card.text)
 
@@ -21,10 +28,6 @@ export default function Card(props) {
         reducer.dispatch(action)
     }, [committedText])
 
-    function handleTextUpdate() {
-        setCommittedText(tempText)
-    }
-
     function handleTextChange(e) {
         setTempText(e.target.value)
     }
@@ -32,19 +35,30 @@ export default function Card(props) {
     function handleTextReset(e) {
         if (e.key === "Escape") {
             setTempText(committedText)
-            e.blur()
+            e.target.blur()
+        } else if (e.key === "Enter") {
+            setCommittedText(tempText)
+            e.target.blur()
         }
     }
 
-    return (<> {/* h-11 px-4 py-2.5 my-0.5 bg-white rounded shadow flex-col justify-start items-start gap-2.5 inline-flex */}
-        <textarea
-            onChange={handleTextChange}
-            value={tempText}
-            placeholder={"Type here bruh"}
-            onBlur={handleTextUpdate}
-            onKeyUp={handleTextReset}
-        />
-        {/* <Link to={`/boards/card/${cardId}`}>info</Link> */}
+    function handleCardDelete() {
+        console.log("handle card delete")
+    }
+
+    return (<>
+        <div className="card">
+            <input
+                onChange={handleTextChange}
+                value={tempText}
+                placeholder={"Type here bruh"}
+                onKeyUp={handleTextReset}
+                className="text"
+            />
+            <Button className="card-button" onClick={handleCardDelete}>
+                <div className="black-rectangle" />
+            </ Button>
+        </div>
     </>)
 }
 

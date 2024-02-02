@@ -1,4 +1,5 @@
 import { createContext } from "react";
+import { testData } from "./testdata";
 
 const emptyBoard = {
     id: 0,
@@ -24,7 +25,10 @@ const emptyCard = {
 export function Reducer(state, action) {
     switch (action.type) {
         case "reset":
-            return initialState
+            return {
+                ...state,
+                boards: [testData]
+            }
         case "saveBoards": {
             return {
                 ...state,
@@ -66,7 +70,6 @@ export function Reducer(state, action) {
                 boardId: action.boardId
             }
             const newBoards = saveColumn(newColumn, state.boards)
-            console.log(newBoards)
             return {
                 ...state,
                 boards: newBoards
@@ -80,7 +83,6 @@ export function Reducer(state, action) {
                 columns: newColumns
             }
             const newBoards = saveBoard(newBoard, state.boards)
-            console.log(newBoards)
             return {
                 ...state,
                 boards: newBoards
@@ -156,8 +158,6 @@ function saveBoard(board, boards) {
 
 function saveColumn(column, boards) {
     let updated = false
-    console.log(column)
-    console.log(boards)
     const board = getBoard(column, boards)
     const columns = board.columns
     const newColumns = columns.map(c => {
@@ -220,3 +220,4 @@ function getColumn(card, boards) {
     const columns = getBoard(card, boards).columns
     return columns.find(b => b.id === card.columnId)
 }
+

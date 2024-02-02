@@ -1,0 +1,48 @@
+.column {
+    padding: 4px;
+    display: flex;
+    flex-direction: column;
+    min-width: 307px;
+    max-height: 400px;
+    background: #C3C3C3;
+    box-shadow: inset 4px 4px 0px rgba(255, 255, 255, 0.5), inset -4px -4px 0px rgba(0, 0, 0, 0.5);
+}
+
+.column-header {
+    background: linear-gradient(90deg, #010081 0%, #1CACE4 100%);
+    border: 0;
+    min-height: 33px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-left: 8px;
+    padding-right: 2px;
+}
+
+.column-title {
+    background: none;
+    border: 0;
+    font-family: Arial;
+    font-size: 16px;
+    color: #FFFFFF;
+}
+
+.button-container {
+    display: flex;
+    gap: 4px;
+}
+
+.column-button {
+    height: 28px;
+    width: 28px;
+    background: #C3C3C3;
+    box-shadow: inset 2px 2px 0px rgba(255, 255, 255, 0.5), inset -2px -2px 0px rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.delete-button {
+    height: 18px;
+    width: 18px;
+}
