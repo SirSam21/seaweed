@@ -76,10 +76,11 @@ export function Reducer(state, action) {
             }
         }
         case "deleteColumn": {
-            const columns = state.boards[action.boardId].columns
+            const board = getBoard({boardId: action.boardId}, state.boards)
+            const columns = board.columns
             const newColumns = columns.filter(c => c.id !== action.id)
             const newBoard = {
-                ...state.boards[action.boardId],
+                ...board,
                 columns: newColumns
             }
             const newBoards = saveBoard(newBoard, state.boards)
@@ -109,10 +110,11 @@ export function Reducer(state, action) {
             }
         }
         case "deleteCard": {
-            const cards = state.boards[action.boardId].columns[action.columnId].cards
-            const newCards = cards.filter(c => c.id !== action.cardId)
+            const column = getColumn({columnId: action.columnId, boardId: action.boardId}, state.boards)
+            const cards = column.cards
+            const newCards = cards.filter(c => c.id !== action.id)
             const newColumn = {
-                ...state.boards[action.boardId].columns[action.columnId],
+                ...column,
                 cards: newCards
             }
             const newBoards = saveColumn(newColumn, state.boards)

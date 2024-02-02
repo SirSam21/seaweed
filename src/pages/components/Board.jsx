@@ -8,16 +8,22 @@ import { ReducerContext } from "../../ReducerContext"
 export default function Board(props) {
     const ctx = useContext(AppContext)
     const reducer = useContext(ReducerContext)
-
-    function getThisBoard() {
-        return reducer.state.boards.find(b => b.id === props.id)
-    }
-
     const board = getThisBoard()
-
-    useEffect(() => console.log(board.nextId),[board.nextId])
-
     const [nextId, setNextId] = useState(board.nextId)
+
+    useEffect(() => {
+        const board = getThisBoard()
+        setNextId(board.nextId)
+    },[reducer.state])
+
+    useEffect(() => {
+        ctx.setPageNavItems(
+            <BoardsMenuItems
+                boardId={props.id}
+                onColumnAdd={onColumnAdd}
+            />
+        )
+    }, [nextId, reducer.state])
 
     function onColumnAdd() {
         const action = {
@@ -29,14 +35,9 @@ export default function Board(props) {
         setNextId(prev => prev + 1)
     }
 
-    useEffect(() => {
-        ctx.setPageNavItems(
-            <BoardsMenuItems
-                boardId={props.id}
-                onColumnAdd={onColumnAdd}
-            />
-        )
-    }, [nextId])
+    function getThisBoard() {
+        return reducer.state.boards.find(b => b.id === props.id)
+    }
 
     return (<>
         {board.columns.map(column => {

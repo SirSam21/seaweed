@@ -6,8 +6,6 @@ import { initialState, ReducerContext, Reducer as reducer } from "./ReducerConte
 export default function SeaweedRoot() {
     const [state, dispatch] = useReducer(reducer, initialState)
 
-    useEffect(() => console.log(state), [state])
-
     return (<>
         <ReducerContext.Provider value={{ state, dispatch }}>
             <AppProvider>

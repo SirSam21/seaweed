@@ -19,7 +19,7 @@ export default function App() {
 
     return (
         <>
-            <BrowserRouter basename="/seaweed">
+            <BrowserRouter>
                 <NavBar>
                     <Menu>
                         {ctx.pageNavItems}

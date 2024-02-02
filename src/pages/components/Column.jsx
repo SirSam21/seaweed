@@ -5,12 +5,6 @@ import { ReducerContext } from "../../ReducerContext.jsx"
 
 export default function Column(props) {
 
-    function getThisColumn() {
-        const board = reducer.state.boards.find(b => b.id === props.boardId)
-        const column = board.columns.find(c => c.id === props.id)
-        return column
-    }
-
     const reducer = useContext(ReducerContext)
     const column = getThisColumn()
     const [tempText, setTempText] = useState(column.title)
@@ -34,6 +28,12 @@ export default function Column(props) {
         reducer.dispatch(action)
     }, [committedText, nextId])
     
+    function getThisColumn() {
+        const board = reducer.state.boards.find(b => b.id === props.boardId)
+        const column = board.columns.find(c => c.id === props.id)
+        return column
+    }
+
     function handleTitleChange(e) {
         if (e.key === "Escape") {
             setTempText(committedText)
@@ -66,7 +66,6 @@ export default function Column(props) {
         reducer.dispatch(action)
     }
 
-    // maybe split column and column contents? style vs content?
     return (<>
         <div>
             <div className="column">

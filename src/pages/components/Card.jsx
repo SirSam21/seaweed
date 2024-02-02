@@ -43,7 +43,13 @@ export default function Card(props) {
     }
 
     function handleCardDelete() {
-        console.log("handle card delete")
+        const action = {
+            type: "deleteCard",
+            id: props.id,
+            columnId: props.columnId,
+            boardId: props.boardId
+        }
+        reducer.dispatch(action)
     }
 
     return (<>
