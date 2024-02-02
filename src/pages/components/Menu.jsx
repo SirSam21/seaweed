@@ -13,7 +13,12 @@ export default function Menu(props) {
             <>
             <div className="overlay" onClick={() => setMenuOpen(false)} />
             <div className="menu-open">
-                {props.children}
+                <div className="container">
+                    {props.children}
+                </div>
+                <div className="menu-title">
+                    {props.menuTitle}
+                </div>
             </div>
             </>,
             document.body)}

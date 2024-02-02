@@ -1,5 +1,6 @@
 .side-bar {
     background-color: #C3C3C3;
+    box-shadow: -2px -2px 0px 0px rgba(0, 0, 0, 0.50) inset, 2px 2px 0px 0px rgba(255, 255, 255, 0.50) inset;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -42,15 +43,42 @@
 }
 
 .menu-open {
-    background-color: blue;
-    width: 50px;
-    height: 50px;
-
+    min-width: 125px;
+    min-height: 100px;
+    box-shadow: -3px -3px 0px 0px rgba(0, 0, 0, 0.50) inset, 3px 3px 0px 0px rgba(255, 255, 255, 0.50) inset;
     position: absolute;
-    display: grid;
-    top: -2px;
-    left: 40px;
+    top: 3px;
+    left: 46px;
     z-index: 10;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 3px;
+    background: #C3C3C3;
+}
+
+.menu-open .menu-title {
+    writing-mode: vertical-rl;
+    transform: rotate(180deg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #FFFFFF;
+    background: linear-gradient(180deg, #010081 0%, #1CACE4 100%);
+    padding-left: 1px;
+    padding-top: 4px;
+    padding-bottom: 4px;
+}
+
+.menu-open .container {
+   display: grid;
+   gap: 5px;
+
+}
+
+.menu-open .container .menu-item {
+    padding-left: 7px;
+    background: none;
 }
 
 .overlay {

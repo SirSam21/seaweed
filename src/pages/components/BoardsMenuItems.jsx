@@ -14,10 +14,10 @@ export default function BoardsMenuItems(props) {
     }
 
     return (<>
-        <Button onClick={props.onColumnAdd}>
+        <Button className="menu-item" onClick={props.onColumnAdd}>
             + Add Column
         </Button>
-        <Button onClick={onResetClick}>
+        <Button className="menu-item" onClick={onResetClick}>
             Reset Board
         </Button>
     </>)

@@ -21,7 +21,7 @@ export default function App() {
         <>
             <BrowserRouter>
                 <NavBar>
-                    <Menu>
+                    <Menu menuTitle={ctx.menuTitle}>
                         {ctx.pageNavItems}
                     </Menu>
                     <div className="divider" />

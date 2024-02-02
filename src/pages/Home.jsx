@@ -6,6 +6,7 @@ export default function Home() {
 
     useEffect(() => {
         ctx.setPageNavItems()
+        ctx.setMenuTitle("Home")
     }, [])
 
     return (<>

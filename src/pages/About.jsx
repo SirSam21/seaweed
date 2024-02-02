@@ -6,6 +6,7 @@ export default function About() {
 
     useEffect(() => {
         ctx.setPageNavItems()
+        ctx.setMenuTitle("About")
     }, [])
 
     return (<>
