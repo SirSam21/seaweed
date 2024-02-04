@@ -23,6 +23,8 @@ export default function Board(props) {
                 onColumnAdd={onColumnAdd}
             />
         )
+
+        ctx.setMenuTitle("Boards")
     }, [nextId, reducer.state])
 
     function onColumnAdd() {

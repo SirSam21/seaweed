@@ -5,10 +5,13 @@ const AppContext = createContext()
 
 function AppProvider(props) {
     const [pageNavItems, setPageNavItems] = useState()
+    const [menuTitle, setMenuTitle] = useState("")
 
     const value = {
         pageNavItems,
-        setPageNavItems
+        setPageNavItems,
+        menuTitle,
+        setMenuTitle
     }
 
     return (<>
