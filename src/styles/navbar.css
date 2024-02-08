@@ -46,8 +46,8 @@
 }
 
 .menu-open {
-    min-width: 125px;
-    min-height: 100px;
+    min-width: 175px;
+    min-height: 150px;
     box-shadow: -3px -3px 0px 0px rgba(0, 0, 0, 0.50) inset, 3px 3px 0px 0px rgba(255, 255, 255, 0.50) inset;
     border: 3px;
     position: absolute;
@@ -66,12 +66,14 @@
     transform: rotate(180deg);
     display: flex;
     align-items: center;
-    justify-content: center;
     color: #FFFFFF;
     background: linear-gradient(180deg, #010081 0%, #1CACE4 100%);
-    padding-left: 1px;
-    padding-top: 4px;
-    padding-bottom: 4px;
+    padding-left: 4px;
+    padding-right: 4px;
+    padding-top: 7px;
+    padding-bottom: 7px;
+    font-size: 24px;
+    font-family: Arial;
 }
 
 .menu-open .container {
@@ -84,6 +86,8 @@
     padding-left: 7px;
     padding-right: 7px;
     background: none;
+    font-size: 16px;
+    font-family: Arial;
 }
 
 .overlay {

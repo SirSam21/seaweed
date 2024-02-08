@@ -10,6 +10,18 @@ export default function Home() {
     }, [])
 
     return (<>
-        <h1>Welcome to Seaweed!</h1>
+        <div className="info-page">
+            <div className="home-page">
+                <div className="info">
+                    <div className="info-title">
+                        Home
+                    </div>
+                    <div className="info-content">
+                        Welcome to Seaweed boards!
+                    </div>
+                </div>
+            </div>
+            <img src="ocean_floor_no_bg.png" alt="background" />
+        </div>
     </>)
 }
