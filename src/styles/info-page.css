@@ -9,6 +9,11 @@
     position: relative;
 }
 
+.about-page {
+    display: flex;
+    justify-content: center;
+}
+
 .home-page {
     display: flex;
     justify-content: center;
