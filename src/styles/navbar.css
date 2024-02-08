@@ -41,6 +41,14 @@
     align-items: center;
 }
 
+.side-bar .menu-btn:active {
+    box-shadow: inset 2px 2px 0px rgba(0, 0, 0, 0.5), inset -2px -2px 0px rgba(255, 255, 255, 0.5);
+}
+
+.side-bar .active {
+    box-shadow: inset 2px 2px 0px rgba(0, 0, 0, 0.5), inset -2px -2px 0px rgba(255, 255, 255, 0.5);
+}
+
 .border-shadow {
     border: 3px solid;    
 }

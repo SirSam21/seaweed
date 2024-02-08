@@ -1,0 +1,35 @@
+/* Group 1 */
+
+width: 41.46px;
+height: 41.46px;
+
+/* Box Shadow Selected */
+box-shadow: inset 2px 2px 0px rgba(0, 0, 0, 0.5), inset -2px -2px 0px rgba(255, 255, 255, 0.5);
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+flex-grow: 0;
+
+
+/* Rectangle 2 */
+
+position: absolute;
+width: 41.46px;
+height: 41.46px;
+left: 0px;
+top: 0px;
+
+background: #C3C3C3;
+
+
+/* New Piskel 1 */
+
+position: absolute;
+width: 31.71px;
+height: 31.71px;
+left: 4.94px;
+top: 4.94px;
+
+background: url(New Piskel.png);
+
