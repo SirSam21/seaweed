@@ -27,7 +27,8 @@ export default function Board(props) {
         ctx.setMenuTitle("Boards")
     }, [nextId, reducer.state])
 
-    function onColumnAdd() {
+    function onColumnAdd(e) {
+        e.stopPropagation()
         const action = {
             type: "addColumn",
             boardId: props.id,

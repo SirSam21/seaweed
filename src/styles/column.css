@@ -3,7 +3,7 @@
     display: flex;
     flex-direction: column;
     min-width: 307px;
-    max-height: 400px;
+    max-height: 407px;
     background: #C3C3C3;
     box-shadow: inset 4px 4px 0px rgba(255, 255, 255, 0.5), inset -4px -4px 0px rgba(0, 0, 0, 0.5);
 }

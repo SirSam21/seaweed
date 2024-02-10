@@ -6,7 +6,8 @@ export default function BoardsMenuItems(props) {
 
     const reducer = useContext(ReducerContext)
 
-    function onResetClick() {
+    function onResetClick(e) {
+        e.stopPropagation()
         const action = {
             type: "reset"
         }

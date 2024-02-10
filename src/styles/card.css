@@ -20,7 +20,7 @@
 .card {
     background: none;
     min-height: 57px;
-    postion: relative;
+    position: relative;
     box-shadow: inset 3px 3px 0px rgba(255, 255, 255, 0.5), inset -3px -3px 0px rgba(0, 0, 0, 0.5);
     display: flex;
     align-items: center;

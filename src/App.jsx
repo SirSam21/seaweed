@@ -27,7 +27,7 @@ export default function App() {
                     <div className="divider" />
                     <DefaultNavItems />
                 </NavBar>
-                <div className="page-container">
+                <div id="page-container" className="page-container">
                     <Routes>
                         <Route path="/" element={<Home />}>
                         </Route>

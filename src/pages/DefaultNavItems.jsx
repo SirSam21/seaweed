@@ -5,8 +5,6 @@ export default function DefaultNavItems() {
 
     const location = useLocation()
 
-    useEffect(() => console.log(location.pathname), [location])
-
     return (<>
         <div className="nav-link">
             <NavLink to="/" className={location.pathname === "" ? "menu-btn active" : "menu-btn"}>

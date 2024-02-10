@@ -1,18 +1,18 @@
 import { createContext } from "react";
 import { testData } from "./testdata";
 
-const emptyBoard = {
-    id: 0,
-    columns: [],
-    nextId: 0
-}
-
 const emptyColumn = {
     id: 0,
     title: "",
     boardId: 0,
     cards: [],
     nextId: 0
+}
+
+const emptyBoard = {
+    id: 0,
+    columns: [emptyColumn],
+    nextId: 1
 }
 
 const emptyCard = {

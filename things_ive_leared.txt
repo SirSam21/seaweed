@@ -1,3 +1,0 @@
-if you want React to render a list properly, especially when deleting, make sure the id that you are deleting by is the same as the item's key in the <li> tag.
-
-if you want a component to re-render, it must have a state that changes.
