@@ -1,9 +1,9 @@
+
 .column {
     padding: 4px;
     display: flex;
     flex-direction: column;
     min-width: 307px;
-    max-height: 407px;
     background: #C3C3C3;
     box-shadow: inset 4px 4px 0px rgba(255, 255, 255, 0.5), inset -4px -4px 0px rgba(0, 0, 0, 0.5);
 }
@@ -15,16 +15,36 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+    gap: 5px;
     padding-left: 8px;
     padding-right: 2px;
+    padding-top: 8px;
+    padding-bottom: 8px;
 }
 
 .column-title {
+    flex-grow: 1;
     background: none;
     border: 0;
     font-family: Arial;
-    font-size: 16px;
+    font-size: 18px;
     color: #FFFFFF;
+    line-height: 20px;
+    height: 24px;
+    max-height: 36px;
+    max-width: 224px;
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+}
+
+/* Hide scrollbar for Chrome, Safari and Opera */
+.column-header textarea::-webkit-scrollbar {
+    display: none;
+}
+
+.column-header textarea:focus-visible {
+    outline: none;
+    border: 0;
 }
 
 .button-container {
