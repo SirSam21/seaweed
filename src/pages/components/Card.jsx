@@ -37,13 +37,13 @@ export default function Card(props) {
     function handleTextReset(e) {
         if (e.key === "Escape") {
             setTempText(committedText)
+            textbox.current.style.height = "0px"
+            textbox.current.style.height = `${textbox.current.scrollHeight}px`
             e.target.blur()
         } else if (e.key === "Enter") {
             setCommittedText(tempText)
             e.target.blur()
         }
-        textbox.current.style.height = "0px"
-        textbox.current.style.height = `${textbox.current.scrollHeight}px`
     }
 
     function handleCardDelete() {
@@ -64,6 +64,7 @@ export default function Card(props) {
                 value={tempText}
                 placeholder={"Add a description :)"}
                 onKeyUp={handleTextReset}
+                onBlur={() => setCommittedText(tempText)}
             />
             <Button className="card-button" onClick={handleCardDelete}>
                 <div className="black-rectangle" />
