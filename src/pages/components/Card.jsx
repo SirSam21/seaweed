@@ -1,4 +1,4 @@
-import { useEffect, useState, useContext } from "react"
+import { useEffect, useState, useContext, useRef } from "react"
 import { ReducerContext } from "../../ReducerContext"
 import Button from "./Button"
 
@@ -15,7 +15,7 @@ export default function Card(props) {
     const card = getThisCard()
     const [tempText, setTempText] = useState(card.text)
     const [committedText, setCommittedText] = useState(card.text)
-
+    const textbox = useRef(null)
 
     useEffect(() => {
         const action = {
@@ -30,11 +30,15 @@ export default function Card(props) {
 
     function handleTextChange(e) {
         setTempText(e.target.value)
+        textbox.current.style.height = "0px"
+        textbox.current.style.height = `${textbox.current.scrollHeight}px`
     }
 
     function handleTextReset(e) {
         if (e.key === "Escape") {
             setTempText(committedText)
+            textbox.current.style.height = "0px"
+            textbox.current.style.height = `${textbox.current.scrollHeight}px`
             e.target.blur()
         } else if (e.key === "Enter") {
             setCommittedText(tempText)
@@ -54,12 +58,13 @@ export default function Card(props) {
 
     return (<>
         <div className="card">
-            <input
+            <textarea
+                ref={textbox}
                 onChange={handleTextChange}
                 value={tempText}
-                placeholder={"Type here bruh"}
+                placeholder={"Add a description :)"}
                 onKeyUp={handleTextReset}
-                className="text"
+                onBlur={() => setCommittedText(tempText)}
             />
             <Button className="card-button" onClick={handleCardDelete}>
                 <div className="black-rectangle" />

@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from "react"
+import { useRef, useContext, useEffect, useState, useLayoutEffect } from "react"
 import Card from "./Card.jsx"
 import Button from "./Button.jsx"
 import { ReducerContext } from "../../ReducerContext.jsx"
@@ -10,6 +10,7 @@ export default function Column(props) {
     const [tempText, setTempText] = useState(column.title)
     const [committedText, setCommittedText] = useState(column.title)
     const [nextId, setNextId] = useState(column.nextId)
+    const textbox = useRef(null)
 
     useEffect(() => {
         if (column === null) {
@@ -40,6 +41,8 @@ export default function Column(props) {
         } else {
             setTempText(e.target.value)
         }
+        textbox.current.style.height = "0px"
+        textbox.current.style.height = `${textbox.current.scrollHeight}px`
     }
 
     function handleTitleUpdate() {
@@ -70,8 +73,9 @@ export default function Column(props) {
         <div>
             <div className="column">
                 <div className="column-header">
-                    <input
-                        placeholder={"Title Here Bruh"}
+                    <textarea
+                        ref={textbox}
+                        placeholder={"Add a Title :)"}
                         onChange={handleTitleChange}
                         value={tempText}
                         onBlur={handleTitleUpdate}

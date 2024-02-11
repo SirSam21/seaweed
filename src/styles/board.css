@@ -9,5 +9,12 @@
     overflow-x: auto;
     overflow-y: hidden;
     white-space: nowrap;
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+}
+
+/* Hide scrollbar for Chrome, Safari and Opera */
+.board-container::-webkit-scrollbar {
+    display: none;
 }
 
