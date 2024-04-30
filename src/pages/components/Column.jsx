@@ -11,15 +11,21 @@ export default function Column(props) {
     const [committedText, setCommittedText] = useState(column.title)
     const [nextId, setNextId] = useState(column.nextId)
     const textbox = useRef(null)
+    const colRef = useRef(null)
 
     useEffect(() => {
         if (column === null) {
             return
         }
+
+        const { left, right } = colRef.current.getBoundingClientRect()
+
         const newColumn = {
             ...column,
             title: committedText,
-            nextId: nextId
+            nextId: nextId,
+            left: left,
+            right: right,
         }
 
         const action = {
@@ -27,8 +33,8 @@ export default function Column(props) {
             column: newColumn
         }
         reducer.dispatch(action)
-    }, [committedText, nextId])
-    
+    }, [committedText, nextId, colRef])
+
     function getThisColumn() {
         const board = reducer.state.boards.find(b => b.id === props.boardId)
         const column = board.columns.find(c => c.id === props.id)
@@ -52,7 +58,6 @@ export default function Column(props) {
     function handleCardAdd() {
         const action = {
             type: "addCard",
-            id: nextId,
             boardId: props.boardId,
             columnId: props.id
         }
@@ -69,9 +74,26 @@ export default function Column(props) {
         reducer.dispatch(action)
     }
 
+    function onDragStart(e) {
+        if (e.target.classList.contains('column')) {
+            e.target.classList.add("column-is-dragging")
+        }
+    }
+
+    function onDragEnd(e) {
+        e.target.classList.remove("column-is-dragging")
+    }
+
     return (<>
         <div>
-            <div className="column">
+            <div
+                className="column"
+                onDragStart={onDragStart}
+                onDragEnd={onDragEnd}
+                draggable="true"
+                id={props.id}
+                ref={colRef}
+            >
                 <div className="column-header">
                     <textarea
                         ref={textbox}

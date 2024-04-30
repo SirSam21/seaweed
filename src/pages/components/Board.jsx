@@ -14,7 +14,7 @@ export default function Board(props) {
     useEffect(() => {
         const board = getThisBoard()
         setNextId(board.nextId)
-    },[reducer.state])
+    }, [reducer.state])
 
     useEffect(() => {
         ctx.setPageNavItems(
