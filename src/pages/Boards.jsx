@@ -1,51 +1,41 @@
-import { useContext, useEffect, useState } from "react"
+import { useContext } from "react"
 import Board from "./components/Board"
 import { ReducerContext } from "../ReducerContext"
 
 export default function Boards() {
-    // const [loaded, setLoaded] = useState(false)
-
     const reducer = useContext(ReducerContext)
 
-    // useEffect(() => {
-    //     console.log(reducer.state.boards[0])
-    // }, [reducer.state])
+    function onDragOver(e) {
+        e.preventDefault()
 
-    // const nextBoardId = reducer.state.nextId
-    // const [nextId, setNextBoardId] = useState(nextBoardId)
+        const draggingElement = document.querySelector(".column-is-dragging")
 
-    // useEffect(() => {
-    //     const localBoards = JSON.parse(localStorage.getItem("seaweedBoards"))
+        if (draggingElement === null) {
+            return
+        }
 
-    //     if (localBoards) {
-    //         const action = {
-    //             type: "saveBoards",
-    //             boards: localBoards
-    //         }
-    //         reducer.dispatch(action)
-    //     } else {
-    //         const action = {
-    //             type: "addBoard"
-    //         }
-    //         reducer.dispatch(action)
-    //     }
-    //     setLoaded(true)
-    // }, [])
+        let draggingCol = null
+        reducer.state.boards[0].columns.forEach((col) => {
+            if (col.id == draggingElement.id) {
+                draggingCol = col
+                draggingCol.left = e.clientX
+                return
+            }
+        })
 
-    // useEffect(() => {
-    //     if (loaded) {
-    //         localStorage.setItem("seaweedBoards", JSON.stringify(reducer.state))
-    //     }
-    // }, [reducer.state, loaded])
+        const action = {
+            type: "moveColumn",
+            column: draggingCol,
+        }
 
-    // if (!loaded) {
-    //     return "Loading..."
-    // }
+        reducer.dispatch(action)
+    }
 
-    // need some kinda board id thing here if we are gonna have
-    // multiple boards
     return (<>
-        <div className="board-container">
+        <div
+            className="board-container"
+            onDragOver={onDragOver}
+        >
             <Board
                 board={reducer.state.boards[0]}
                 id={0}

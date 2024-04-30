@@ -13,25 +13,42 @@ export default function Card(props) {
 
     const reducer = useContext(ReducerContext)
     const card = getThisCard()
+    const textbox = useRef(null)
+    const cardRef = useRef(null)
     const [tempText, setTempText] = useState(card.text)
     const [committedText, setCommittedText] = useState(card.text)
-    const textbox = useRef(null)
+    const [cardMid, setCardMid] = useState()
+
+    useEffect(() => {
+        const { top, bottom } = cardRef.current.getBoundingClientRect()
+        setCardMid((top - bottom / 2) + bottom)
+    }, [])
 
     useEffect(() => {
         const action = {
             type: "saveCard",
             card: {
                 ...card,
-                text: committedText
+                text: committedText,
+                mid: cardMid,
             }
         }
         reducer.dispatch(action)
-    }, [committedText])
+    }, [committedText, cardMid])
 
     function handleTextChange(e) {
         setTempText(e.target.value)
+
         textbox.current.style.height = "0px"
         textbox.current.style.height = `${textbox.current.scrollHeight}px`
+
+        updateMid()
+    }
+
+    function updateMid() {
+        const { top, bottom } = cardRef.current.getBoundingClientRect()
+
+        setCardMid((top - bottom / 2) + bottom)
     }
 
     function handleTextReset(e) {
@@ -39,6 +56,7 @@ export default function Card(props) {
             setTempText(committedText)
             textbox.current.style.height = "0px"
             textbox.current.style.height = `${textbox.current.scrollHeight}px`
+            updateMid()
             e.target.blur()
         } else if (e.key === "Enter") {
             setCommittedText(tempText)
@@ -56,8 +74,57 @@ export default function Card(props) {
         reducer.dispatch(action)
     }
 
+    function onDragStart(e) {
+        if (e.target.classList.contains('card')) {
+            e.target.classList.add("card-is-dragging");
+        }
+    }
+
+    function onDragEnd(e) {
+        e.preventDefault()
+
+        const draggingElement = document.querySelector(".card-is-dragging")
+
+        if (draggingElement === null) {
+            return
+        }
+
+        const board = reducer.state.boards.find(b => b.id === props.boardId)
+
+        let draggingCard = null
+        board.columns.forEach((col) => {
+            col.cards.forEach((card) => {
+                if (card.id == draggingElement.id) {
+                    draggingCard = {
+                        ...card,
+                        mid: e.clientY
+                    }
+                    return
+                }
+            })
+            if (draggingCard !== null) {
+                return
+            }
+        })
+
+        const action = {
+            type: "moveCard",
+            card: draggingCard,
+            x: e.clientX,
+        }
+        reducer.dispatch(action)
+        e.target.classList.remove("card-is-dragging");
+    }
+
     return (<>
-        <div className="card">
+        <div
+            className="card"
+            draggable="true"
+            onDragStart={onDragStart}
+            onDragEnd={onDragEnd}
+            id={props.id}
+            ref={cardRef}
+        >
             <textarea
                 ref={textbox}
                 onChange={handleTextChange}

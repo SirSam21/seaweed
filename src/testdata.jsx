@@ -34,28 +34,29 @@ export const testData = {
                 }
             ],
             id: 0,
-            nextId: 4
+            nextId: 4,
+            left: 80
         },
         {
             title: "test1",
             boardId: 0,
             cards: [
                 {
-                    text: "card0",
-                    id: 0,
+                    text: "card4",
+                    id: 4,
                     boardId: 0,
                     columnId: 1
 
                 },
                 {
-                    text: "card1",
-                    id: 1,
+                    text: "card5",
+                    id: 5,
                     boardId: 0,
                     columnId: 1
                 },
                 {
-                    text: "card2",
-                    id: 2,
+                    text: "card6",
+                    id: 6,
                     boardId: 0,
                     columnId: 1
                 }
@@ -68,14 +69,14 @@ export const testData = {
             boardId: 0,
             cards: [
                 {
-                    text: "card0",
-                    id: 0,
+                    text: "card7",
+                    id: 7,
                     boardId: 0,
                     columnId: 2
                 },
                 {
-                    text: "card1",
-                    id: 1,
+                    text: "card8",
+                    id: 8,
                     boardId: 0,
                     columnId: 2
                 }
@@ -88,8 +89,8 @@ export const testData = {
             boardId: 0,
             cards: [
                 {
-                    text: "card0",
-                    id: 0,
+                    text: "card9",
+                    id: 9,
                     boardId: 0,
                     columnId: 3
                 }
